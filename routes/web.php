@@ -2,13 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CheckController;
-use App\Http\Controllers\RolesController;
-use App\Http\Controllers\PermissionsController;
-use App\Http\Controllers\RolesAssignmentController;
-// use Laratrust\Http\Controllers\RolesController;
-// use Laratrust\Http\Controllers\PermissionsController;
-// use Laratrust\Http\Controllers\RolesAssignmentController;
-// namespace Laratrust\Http\Controllers;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,25 +23,37 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-
-// Route::middleware(['auth','HasPermission'])->group(function () {
-Route::middleware(['auth'])->group(function () {
+// todo: how to know what route was protect by auth ? any cmd like route:list ?
+Route::group(['prefix' => 'laratrust', 'namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
 
     Route::get('/create',[CheckController::class, 'create']);
-    // Route::get('/',[CheckController::class, 'index']);
-    // Route::get('/home', [HomeController::class, 'index'])->name('home');
+    //below works, but can move to outside to Route:group(['middleware' => 'auth'])
+    // Route::resource('/', 'RolesAssignmentController', ['as' => 'laratrust'])->middleware('auth');
+
+    //check not only login but also login as admin role
+    Route::resource('permissions', 'PermissionsController', ['as' => 'laratrust'])->only(['index', 'create', 'store', 'edit', 'update'])->middleware(['role:Admin']);
+    Route::resource('roles', 'RolesController', ['as' => 'laratrust'])->middleware(['role:Admin']);
+    Route::resource('roles-assignment', 'RolesAssignmentController', ['as' => 'laratrust'])
+    ->only(['index', 'edit', 'update'])->middleware(['role:Admin']);
 
 });
 
-// todo: move to here but not working
-//not only login but also login as admin
-// Route::resource('/permissions', 'PermissionsController', ['as' => 'laratrust'])
-//     ->only(['index', 'create', 'store', 'edit', 'update'])->middleware(['role:Admin']);
+// Route::group(['prefix' => 'dashboard/vendor/', 'namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
 
-// Route::resource('/roles', 'RolesController', ['as' => 'laratrust'])->middleware(['role:Admin']);
+//     Route::get('/create',[CheckController::class, 'create']);
+//     //below works, but can move to outside to Route:group(['middleware' => 'auth'])
+//     // Route::resource('/', 'RolesAssignmentController', ['as' => 'laratrust'])->middleware('auth');
 
-// Route::resource('/roles-assignment', 'RolesAssignmentController', ['as' => 'laratrust'])
+//     //check not only login but also login as admin role
+//     Route::resource('update', 'VendorController', ['as' => 'laratrust'])->only(['index', 'create', 'store', 'edit', 'update'])->middleware(['role:Vendor']);
+//     Route::resource('index', 'VendorController', ['as' => 'laratrust'])->middleware(['role:Vendor']);
+//     Route::resource('roles-assignment', 'VendorController', ['as' => 'laratrust'])
 //     ->only(['index', 'edit', 'update'])->middleware(['role:Admin']);
+
+// });
+
+
+
 
 
 
