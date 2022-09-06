@@ -19,11 +19,20 @@
                     </x-nav-link>
                 </div>
                 {{-- add for laratrust --}}
+                @role('Admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ url('laratrust/roles-assignment') }}">
                         {{ __('Laratrust') }}
                     </x-nav-link>
                 </div>
+                @endrole
+                @role('Admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ url('laratrust/roles-assignment') }}">
+                        {{ __('DiskLikeFood') }}
+                    </x-nav-link>
+                </div>
+                @endrole
             </div>
 
             <!-- Settings Dropdown -->
