@@ -89,7 +89,7 @@ class RolesAssignmentController
     {
         $modelKey = $request->get('model');
         $userModel = Config::get('laratrust.user_models')[$modelKey] ?? null;
-        dump($request);
+        // dump($request);
         if (!$userModel) {
             Session::flash('laratrust-error', 'Model was not specified in the request');
             return redirect()->back();
@@ -97,11 +97,11 @@ class RolesAssignmentController
 
         $user = $userModel::findOrFail($modelId);
         $user->syncRoles($request->get('roles') ?? []);
-        dump($request->get('permissions'));
+        // dump($request->get('permissions'));
         if ($this->assignPermissions) {
             $user->syncPermissions($request->get('permissions') ?? []);
         }
-        dd($request->get('roles'));
+        // dd($request->get('roles'));
 
         Session::flash('laratrust-success', 'Roles and permissions assigned successfully');
         return redirect(route('laratrust.roles-assignment.index', ['model' => $modelKey]));
