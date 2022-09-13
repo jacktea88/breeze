@@ -43,4 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function dislikes()
+    {
+        return $this->belongstoMany('App\Models\Dislike');
+    }
 }
