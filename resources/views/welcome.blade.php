@@ -17,6 +17,7 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+            color: rgb(249, 175, 3);
             }
         </style>
     </head>
@@ -45,6 +46,69 @@
                     </svg>
                 </div>
 
+            {{-- test input start --}}
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 margin-tb">
+                        <div class="pull-left">
+                            <h2>Add New Post</h2>
+                        </div>
+                        <div class="pull-right">
+                            {{-- <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a> --}}
+                        </div>
+                    </div>
+                </div>
+
+                <form action="{{ route('user.input') }}" method="POST" >
+                    @csrf
+
+                    <div class="row myform">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>User ID:</strong>
+                                {{-- <input type="text" name="title" class="form-control" placeholder="Title"> --}}
+                                <input type="number" name="uid" class="form-control" placeholder="ID">
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Description:</strong>
+                                <textarea class="form-control" rows="5" name="description" placeholder="Description"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label><strong>Category :</strong></label><br>
+                                @php
+                                use App\Models\Dislike;
+                                $dislikes =  Dislike::all();
+                                @endphp
+                                @foreach ( $dislikes as $dislike)
+                                <label><input type="checkbox" name="dislike[]" value={{$dislike->id}}>{{$dislike->foodName}} </label>
+                                @endforeach
+                                {{-- <label><input type="checkbox" name="dislike[]" value="JQuery"> JQuery</label>
+                                <label><input type="checkbox" name="dislike[]" value="Bootstrap"> Bootstrap</label>
+                                <label><input type="checkbox" name="dislike[]" value="Codeigniter"> Codeigniter</label>
+                                <label><input type="checkbox" name="dislike[]" value="JQuery UI"> JQuery UI</label> --}}
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary" onclick="return confirm('確定要執行嗎?')">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+            {{-- test input end --}}
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
