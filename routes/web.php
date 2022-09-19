@@ -23,10 +23,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/user/{id}',[CheckController::class, 'show'])->name('user.show');
+Route::get('/create',[CheckController::class, 'create'])->name('user.input');
+Route::post('/create',[CheckController::class, 'create'])->name('user.input');
+
+
 // todo: how to know what route was protect by auth ? any cmd like route:list ?
 Route::group(['prefix' => 'laratrust', 'namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
 
-    Route::get('/create',[CheckController::class, 'create']);
+
     //below works, but can move to outside to Route:group(['middleware' => 'auth'])
     // Route::resource('/', 'RolesAssignmentController', ['as' => 'laratrust'])->middleware('auth');
 
