@@ -82,7 +82,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <label><strong>Category :</strong></label><br>
                                 @php
@@ -92,12 +92,9 @@
                                 @foreach ( $dislikes as $dislike)
                                 <label><input type="checkbox" name="dislike[]" value={{$dislike->id}}>{{$dislike->foodName}} </label>
                                 @endforeach
-                                {{-- <label><input type="checkbox" name="dislike[]" value="JQuery"> JQuery</label>
-                                <label><input type="checkbox" name="dislike[]" value="Bootstrap"> Bootstrap</label>
-                                <label><input type="checkbox" name="dislike[]" value="Codeigniter"> Codeigniter</label>
-                                <label><input type="checkbox" name="dislike[]" value="JQuery UI"> JQuery UI</label> --}}
+
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             {{-- <button type="submit" class="btn btn-primary" onclick="return confirm('確定要執行嗎?')">Submit</button> --}}
