@@ -60,7 +60,9 @@
                     </div>
                 </div>
 
-                <form action="{{ route('user.input') }}" method="POST" >
+                {{-- <form action="{{ route('user.input') }}" method="POST" > --}}
+                <form action="" method="POST" >
+
                     @csrf
 
                     <div class="row myform">
@@ -98,7 +100,7 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary" onclick="return confirm('確定要執行嗎?')">Submit</button>
+                            {{-- <button type="submit" class="btn btn-primary" onclick="return confirm('確定要執行嗎?')">Submit</button> --}}
                         </div>
                     </div>
                 </form>
