@@ -9,10 +9,15 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
+        "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
+        "laravelcollective/html": "^6.3",
+        "maatwebsite/excel": "^3.1",
+        "psr/simple-cache": "2.0",
         "santigarcor/laratrust": "^7.1"
     },
     "require-dev": {
+        "beyondcode/laravel-dump-server": "^1.8",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.12",
         "laravel/pint": "^1.0",
@@ -60,6 +65,9 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
+        },
+        "platform": {
+            "php": "8.0.17"
         }
     },
     "minimum-stability": "dev",
