@@ -151,11 +151,24 @@ return [
     |
     */
 
+    // 'custom' => [
+    //     'attribute-name' => [
+    //         'rule-name' => 'custom-message',
+    //     ],
+    // ],
+
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'user_email' => [
+          'required' => '電子郵件欄位必填，且須為有效的電子郵件格式',
         ],
-    ],
+        'dislike' => [
+          'required_without_all' => '請至少選取一個項目',
+          'max' => '勾選項目至多不得超過 :max 個',
+          'min' => '請至少選取 :min 個項目',
+        ],
+
+
+      ],
 
     /*
     |--------------------------------------------------------------------------
