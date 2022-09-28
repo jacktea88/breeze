@@ -49,5 +49,6 @@
       </div>
     </div>
   </div>
-  {{ $permissions->links('laratrust::panel.pagination') }}
+        {{-- 暫時mrak掉，因為6080環境下會有問題，local:8000是ok的 --}}
+  {{-- {{ $permissions->links('laratrust::panel.pagination') }} --}}
 @endsection
