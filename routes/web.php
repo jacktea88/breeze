@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CheckController;
+use App\Http\Controllers\GoogleController;
 
 
 /*
@@ -23,10 +24,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/user/{id}',[CheckController::class, 'show'])->name('user.show');
-Route::get('/create',[CheckController::class, 'create'])->name('user.input');
-Route::post('/create',[CheckController::class, 'create'])->name('user.input');
-
+// Route::get('/user/{id}',[CheckController::class, 'show'])->name('user.show');
+// Route::get('/create',[CheckController::class, 'create'])->name('user.input');
+// Route::post('/create',[CheckController::class, 'create'])->name('user.input');
+Route::resource('forms','\App\Http\Controllers\FormController');
+// Route::get('/forms','FormController');
 
 // todo: how to know what route was protect by auth ? any cmd like route:list ?
 Route::group(['prefix' => 'laratrust', 'namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
@@ -57,9 +59,26 @@ Route::group(['prefix' => 'laratrust', 'namespace' => '\App\Http\Controllers', '
 
 // });
 
+// add Route for Google account register
+Route::controller(GoogleController::class)->group(function(){
 
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
 
+    Route::get('auth/google/callback', 'handleGoogleCallback');
 
+});
 
+// for gmail server
+Route::get('/feedback', function () {
+    return view('feedback');
+});
+// Route::view('/feedback','feedback');
+
+// 可印出env的設定值
+// Route::get('/env', function () {
+//     return ENV('MAIL_PORT', '555@gmail.com');
+// });
+
+Route::get('users/export/', '\App\Http\Controllers\CheckController@export');
 
 require __DIR__.'/auth.php';
