@@ -12,9 +12,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
-                ->name('register');
+                ->name('register'); //to show 1st register form
+    Route::get('register/google', [RegisteredUserController::class, 'createGoogle'])
+                ->name('register.google'); //Google認證後，to show 1st register form
+    Route::get('register/pair', [RegisteredUserController::class, 'createPair'])
+                ->name('register.pair'); //to show 2nd pair data form
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+
+    Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
+    Route::post('register/google', [RegisteredUserController::class, 'storeGoogle'])->name('register.store.google');
+    Route::post('register/pair', [RegisteredUserController::class, 'storePair'])->name('register.store.pair');
+
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');

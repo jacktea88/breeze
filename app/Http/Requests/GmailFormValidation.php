@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class YumFormValidation extends FormRequest
+class GmailFormValidation extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class YumFormValidation extends FormRequest
     return [
       'user_name' => 'required',
       'user_email' => 'required|email',
-      'user_password' => 'required',
+    //   'user_password' => 'required',
     //   'user_sex' => 'required',
     //   'user_bio' => 'required',
     //   'user_position' => 'required|not_in:0',
