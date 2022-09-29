@@ -64,6 +64,5 @@
       </div>
     </div>
   </div>
-        {{-- 暫時mrak掉，因為6080環境下會有問題，local:8000是ok的 --}}
-    {{-- {{ $roles->links('laratrust::panel.pagination') }} --}}
+    {{ $roles->links('laratrust::panel.pagination') }}
 @endsection
