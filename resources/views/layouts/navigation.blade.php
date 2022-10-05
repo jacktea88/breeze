@@ -5,9 +5,10 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-
+                    {{-- <a href="{{ route('dashboard') }}"> --}}
+                    <a href="/">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        {{ __('') }}
                     </a>
                 </div>
 
@@ -15,23 +16,38 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     {{-- <x-nav-link href="{{route('dashboard')}}" :active="request()->routeIs('dashboard')"> --}}
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('yumeal管理中心') }}
                     </x-nav-link>
                 </div>
                 {{-- add for laratrust --}}
                 @role('Admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ url('laratrust/roles-assignment') }}">
-                        {{ __('Laratrust') }}
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ url('laratrust/roles-assignment') }}">
+                            {{ __('使用者權限管理') }}
+                        </x-nav-link>
+                    </div>
                 @endrole
                 @role('Admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ url('laratrust/roles-assignment') }}">
-                        {{ __('DiskLikeFood') }}
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('DislikeFood.index') }}">
+                            {{ __('不討喜食物管理') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('ChainDiner.index') }}">
+                            {{ __('知名連鎖餐飲管理') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('DietGroup.index') }}">
+                            {{ __('飲食族群設定') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('DietBehavior.index') }}">
+                            {{ __('飲食習性清單管理') }}
+                        </x-nav-link>
+                    </div>
                 @endrole
             </div>
 
@@ -54,11 +70,15 @@
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
+                            <!--右上方下拉選單位置-->
+                            <x-dropdown-link :href="route('profile')">
+                                {{ __('個人檔案') }}
+                            </x-dropdown-link>
 
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                                onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('登出') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -69,8 +89,8 @@
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -78,12 +98,53 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('yumeal管理中心') }}
             </x-responsive-nav-link>
+            {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('yumeal管理中心') }}
+            </x-nav-link> --}}
+            @role('Admin')
+                <x-responsive-nav-link href="{{ route('DislikeFood.index') }}">
+                    {{ __('不討喜食物管理') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link href="{{ route('ChainDiner.index') }}">
+                    {{ __('知名連鎖餐飲管理') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link href="{{ route('DietGroup.index') }}">
+                    {{ __('飲食族群設定') }}
+                    </x-responsive-nav-linkk>
+
+                    <x-responsive-nav-link href="{{ route('DietBehavior.index') }}">
+                        {{ __('飲食習性清單管理') }}
+                    </x-responsive-nav-link>
+                @endrole
         </div>
+        @role('Admin')
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-responsive-nav-link href="{{ route('DislikeFood.index') }}">
+                    {{ __('不討喜食物管理') }}
+                </x-responsive-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-responsive-nav-link href="{{ route('ChainDiner.index') }}">
+                    {{ __('知名連鎖餐飲管理') }}
+                </x-responsive-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
+            </div>
+        @endrole
+
+
+
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
@@ -96,11 +157,14 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
+                    <x-responsive-nav-link :href="route('profile')">
+                        {{ __('個人檔案') }}
+                    </x-responsive-nav-link>
 
                     <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                        onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('登出') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
