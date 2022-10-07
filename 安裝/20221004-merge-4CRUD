@@ -1,3 +1,4 @@
+notebook開發端
 done merge resources\views\layouts\navigation.blade.php
 done migration: add google_id & register column need rollback then copy new migration files x 4 then add back Tree's register column
 done merge routes\web.php
@@ -5,3 +6,10 @@ done import sql data
 done need fix View [profile] not found. -> need add profile.blade.php
 done need fix SQLSTATE[HY000]: General error: 1364 Field 'first_name' doesn't have a default value (need set nullable)
 done CRUD跑版：須merge app.blade.php & 修改url <link rel="stylesheet" type="text/css" href={{url('/airy/crud_index.css');}}>
+done 初步測試crud功能 & google登入正常
+done 將code提交到github
+NAS 端
+done nas上的專案先將原先新增google_id的migration file移除，也要把user table的g_id欄位刪除，以保持和開發環境一致
+done nas上的專案git pull then php artisan migrate
+done 將4 table資料用phpmyadmin傳進去
+done 初步測試crud功能 & google登入正常

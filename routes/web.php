@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/food', function () {
+    return view('food');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
