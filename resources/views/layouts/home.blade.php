@@ -122,7 +122,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <div class="container">
         <h1>
           <a class="navbar-brand" href="#about">
-            {{-- <i class="fas fa-utensils"></i> --}}
+            <i class="fas fa-utensils"></i>
             Yumeal
           </a>
         </h1>
@@ -434,7 +434,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 @section('js_scrolling')
   <!-- smooth scrolling -->
   {{-- <script src="js/SmoothScroll.min.js"></script> --}}
-  <script src="{{ asset('assets/js/SmoothScroll.min.js') }}"></script>
+  {{-- CHROME不支援先拿掉 --}}
+  {{-- <script src="{{ asset('assets/js/SmoothScroll.min.js') }}"></script> --}}
   <!-- //smooth scrolling -->
 @show
 
@@ -460,7 +461,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <!-- <script src="js/bootstrap.js"></script> -->
   <!-- Necessary-JavaScript-File-For-Bootstrap -->
   <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
   <!-- //Js files -->
 

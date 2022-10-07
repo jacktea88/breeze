@@ -1,0 +1,4 @@
+done 修正chrome滑鼠不能捲動問題(firefox可以)
+        因chrome不支援，所以先mark掉<script src="{{ asset('assets/js/SmoothScroll.min.js') }}"></script>
+done BS5 js file need change to 5.1.
+done 修正fa圖案出不來 (要加assets/webfonts檔)
