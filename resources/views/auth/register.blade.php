@@ -1,3 +1,5 @@
+{{-- 原生的breeze註冊頁，目前沒在用，改用resources\views\auth\register-basic.blade.php --}}
+
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -8,6 +10,12 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+
+{{-- 原生的breeze註冊頁，目前沒在用，改用三個取代resources\views\auth\register-basic.blade.php --}}
+{{-- 原生的breeze註冊頁，目前沒在用，改用三個取代resources\views\auth\register-google.blade.php --}}
+{{-- 原生的breeze註冊頁，目前沒在用，改用三個取代resources\views\auth\register-pair.blade.php --}}
+
 
 {{-- form start --}}
 {{-- form start --}}
