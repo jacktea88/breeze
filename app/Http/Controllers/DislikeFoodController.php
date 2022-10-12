@@ -15,7 +15,7 @@ class DislikeFoodController extends Controller
   public function index()
   {
     $DislikeFoods = DislikeFood::orderBy('id', 'desc')->get();
-    $DislikeFoods = DislikeFood::orderBy('id', 'desc')->paginate(15);
+    $DislikeFoods = DislikeFood::orderBy('id', 'desc')->paginate(25);
     //return view('DislikeFood.index');
     //return view('DislikeFood.indexBasic', [
     return view('DislikeFood.index', [
@@ -44,8 +44,7 @@ class DislikeFoodController extends Controller
     //前面key區塊的名稱為表單名    //該表格4個欄位名 df_no  df_name  df_type df_remark
     $request->validate([
       'df_no' => 'required',
-      'df_name' => 'required',
-      'df_type' => 'required',
+      'df_name' => 'required'
     ]);
 
     $DislikeFood = new DislikeFood();
@@ -99,10 +98,12 @@ class DislikeFoodController extends Controller
    */
   public function update(Request $request, $id)
   {
+
+    //return $request->input();    exit;
     $request->validate([
       'df_no' => 'required',
-      'df_name' => 'required',
-      'df_type' => 'required',
+      'df_name' => 'required'
+
     ]);
 
     $DislikeFood = DislikeFood::findOrFail($id);

@@ -7,36 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" href="/vendor/laratrust/img/logo.png">
   <title>Laratrust - @yield('title')</title>
-  {{-- <link href="{{ mix('laratrust.css', 'vendor/laratrust') }}" rel="stylesheet"> --}}
-  {{-- <link href="{{ mix('laratrust.css', '/web111a/laravel/breeze/public/vendor/laratrust') }}" rel="stylesheet"> --}}
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
-{{-- 用新的vite取代mix，在非local:8000環境下，原程式碼的路徑須修改， --}}
-{{-- 且開發端和雲端的網址路徑不同，所以直接將會用到的css放在下面，不須用link方式引用 --}}
-  {{-- <link href="/web111a/laravel/breeze/public/vendor/laratrust/laratrust.css" rel="stylesheet"> --}}
-  {{-- <link href="/web111a/laravel/breeze/public/assets/style.css" rel="stylesheet"> --}}
-
-  {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
+  <link href="{{ mix('laratrust.css', 'vendor/laratrust') }}" rel="stylesheet">
+  {{-- airy自補css --}}
+  <link rel="stylesheet" type="text/css" href={{url('css/airy/laratrust_airyCopy.css')  }}>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-  <style>
-    .td,.th{border-bottom-width:1px;--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.td{padding:1rem 1.5rem;white-space:nowrap}
-    .th {
-	padding: .75rem 1.5rem;
-	--bg-opacity: 1;
-	background-color: #f7fafc;
-	background-color: rgba(247,250,252,var(--bg-opacity));
-	text-align: left;
-	font-size: .75rem;
-	line-height: 1rem;
-	font-weight: 500;
-	--text-opacity: 1;
-	color: #a0aec0;
-	color: rgba(160,174,192,var(--text-opacity));
-	text-transform: uppercase;
-	letter-spacing: .05em;
-}
-
-    .nav-button,.nav-button-active{padding:.5rem .75rem;border-radius:.375rem;font-size:.875rem;font-weight:500;--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.nav-button-active{background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.nav-button-active,.nav-button-active:focus,.nav-button:focus{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity));--bg-opacity:1}.nav-button-active:focus,.nav-button:focus{outline:0}.nav-button-active:focus,.nav-button:focus,.nav-button:hover{background-color:#4a5568;background-color:rgba(74,85,104,var(--bg-opacity))}.nav-button:hover{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity));--bg-opacity:1}
-  </style>
 </head>
 <body>
 <div>
@@ -46,7 +20,7 @@
         <div class="flex items-center">
           <div class="hidden md:block">
             <div class="flex items-baseline">
-              <a href="{{config('laratrust.panel.go_back_dashboard')}}" class="nav-button">← Go Back</a>
+              <a href="{{asset(config('laratrust.panel.go_back_dashboard'))}}" class="nav-button">← Go Back</a>
               <a
                 href="{{ route('laratrust.roles-assignment.index') }}"
                 class="ml-4 {{ request()->is('*roles-assigment*') ? 'nav-button-active' : 'nav-button' }}"
@@ -92,7 +66,6 @@
 
       Open: "block", closed: "hidden"
     -->
-
     <div class="hidden md:hidden">
       <div class="px-2 pt-2 pb-3 sm:px-3">
         <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>

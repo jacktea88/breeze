@@ -5,8 +5,11 @@ use App\Http\Controllers\DislikeFoodController;
 use App\Http\Controllers\ChainDinerController;
 use App\Http\Controllers\DietGroupController;
 use App\Http\Controllers\DietBehaviorController;
-use App\Http\Controllers\CheckController;
-use App\Http\Controllers\GoogleController;
+
+use App\Http\Controllers\DinerController;
+use App\Http\Controllers\DinerTypeController;
+use App\Http\Controllers\FoodTypeController;
+use App\Http\Controllers\MealController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,15 +22,11 @@ use App\Http\Controllers\GoogleController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/food', function () {
-    return view('food');
+  return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+  return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -58,29 +57,63 @@ Route::group(['prefix' => 'laratrust', 'namespace' => '\App\Http\Controllers', '
 
 // todo: how to know what route was protect by auth ? any cmd like route:list ?
 Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
-
-
-
+  //不討喜食物
   Route::get('DislikeFood/delete/{id}', [DislikeFoodController::class, 'destroy']);  //這裡要用get才能正常執行
   Route::resource('DislikeFood', DislikeFoodController::class)->middleware(['role:Admin']);
-
+  //飲食習性
   Route::get('DietBehavior/delete/{id}', [DietBehaviorController::class, 'destroy']);
   Route::resource('DietBehavior', DietBehaviorController::class)->middleware(['role:Admin']);
-
+  //知名連鎖餐飲
   Route::get('ChainDiner/delete/{id}', [ChainDinerController::class, 'destroy']);
   Route::resource('ChainDiner', ChainDinerController::class)->middleware(['role:Admin']);
   //Route::resource('ChainDiner', 'App\Http\Controllers\ChainDinerController')->middleware(['role:Admin']);
-
+  //飲食族群
   Route::get('DietGroup/delete/{id}', [DietGroupController::class, 'destroy']);
   Route::resource('DietGroup', DietGroupController::class)->middleware(['role:Admin']);
+  //餐廳類別
+  Route::get('DinerType/delete/{id}', [DinerTypeController::class, 'destroy']);
+  Route::resource('DinerType', DinerTypeController::class)->middleware(['role:Admin']);
+
+  Route::get('FoodType/delete/{id}', [FoodTypeController::class, 'destroy']);
+  Route::resource('FoodType', FoodTypeController::class)->middleware(['role:Admin']);
+
+  Route::get('Diner/delete/{id}', [DinerController::class, 'destroy'])->middleware(['role:Vendor']);
+  //Route::resource('Diner', DinerController::class)->middleware(['role:Admin']);
+  Route::resource('Diner', 'App\Http\Controllers\DinerController')->middleware(['role:Vendor']);
+
+  Route::get('Meal/delete/{id}', [MealController::class, 'destroy'])->middleware(['role:Vendor']);
+  Route::resource('Meal', MealController::class)->middleware(['role:Vendor']);
+
+
+
+  Route::get('/df_search', 'App\Http\Controllers\DislikeFoodController@search')->name('DislikeFood_search');
+  Route::get('/cd_search', 'App\Http\Controllers\ChainDinerController@search')->name('ChainDiner_search');
+  Route::get('/dg_search', 'App\Http\Controllers\DietGroupController@search')->name('DietGroup_search');
+  Route::get('/db_search', 'App\Http\Controllers\DietBehaviorController@search')->name('DietBehavior_search');
+
+  Route::get('/din_search', 'App\Http\Controllers\DinerController@search')->middleware(['role:Vendor'])->name('Diner_search');
+  Route::get('/dt_search', 'App\Http\Controllers\DinerTypeController@search')->name('DinerType_search');
+  Route::get('/ft_search', 'App\Http\Controllers\FoodTypeController@search')->name('FoodType_search');
 });
 
-Route::get('/df_search', 'App\Http\Controllers\DislikeFoodController@search')->name('DislikeFood_search');
-Route::get('/cd_search', 'App\Http\Controllers\ChainDinerController@search')->name('ChainDiner_search');
-Route::get('/dg_search', 'App\Http\Controllers\DietGroupController@search')->name('DietGroup_search');
-Route::get('/db_search', 'App\Http\Controllers\DietBehaviorController@search')->name('DietBehavior_search');
+Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
 
+  // Route::get('Diner/delete/{id}', [DinerController::class, 'destroy']);
+  // Route::resource('Diner', DinerController::class)->middleware(['role:Vendor']);
 
+  // Route::get('Meal/delete/{id}', [MealController::class, 'destroy']);
+  // Route::resource('Meal', MealController::class)->middleware(['role:Vendor']);
+
+  Route::get('/din_search', 'App\Http\Controllers\DinerController@search')->name('Diner_search');
+  Route::get('/meal_search', 'App\Http\Controllers\MealController@search')->name('Meal_search');
+});
+
+Route::get('upload', function () {
+  return view('upload');
+});
+
+//Route::post('uploadpic', [ImagesController::class, 'uploadimage'])->name('uploadimage');
+//uploadimage
 // Route::group(['prefix' => 'dashboard/vendor/', 'namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
 
 //     Route::get('/create',[CheckController::class, 'create']);
@@ -95,32 +128,9 @@ Route::get('/db_search', 'App\Http\Controllers\DietBehaviorController@search')->
 
 // });
 
-// add Route for Google account register
-Route::controller(GoogleController::class)->group(function(){
 
-    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
 
-    Route::get('auth/google/callback', 'handleGoogleCallback');
 
-});
 
-// for gmail server
-Route::get('/feedback', function () {
-    return view('feedback');
-});
-// Route::view('/feedback','feedback');
 
-// 可印出env的設定值
-// Route::get('/env', function () {
-//     return ENV('MAIL_PORT', '555@gmail.com');
-// });
-
-Route::get('users/export/', '\App\Http\Controllers\CheckController@export');
-
-// Route::get('/user/{id}',[CheckController::class, 'show'])->name('user.show');
-// Route::get('/create',[CheckController::class, 'create'])->name('user.input');
-// Route::post('/create',[CheckController::class, 'create'])->name('user.input');
-Route::resource('forms','\App\Http\Controllers\FormController');
-// Route::get('/forms','FormController');
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
