@@ -34,7 +34,11 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'http://localhost:8000/auth/google/callback',
+        'redirect' => 'http://localhost/web111a/laravel/breeze/public/auth/google/callback',
+        // 'redirect' => 'http://localhost:8000/auth/google/callback',
+        // 'redirect' => url('/auth/google/callback'),//注意不可使用help函式在設定檔內，否則artisan指令無法運作
+
+
 
     ],
 
