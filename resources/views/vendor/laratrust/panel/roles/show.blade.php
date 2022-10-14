@@ -1,6 +1,6 @@
 @extends('laratrust::panel.layout')
 
-@section('title', "Role details")
+@section('title', "角色類別列表")
 
 @section('content')
   <div>

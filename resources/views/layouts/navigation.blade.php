@@ -6,9 +6,9 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     {{-- <a href="{{ route('dashboard') }}"> --}}
-                    <a href="/">
+                    <a href="{{route('home')}}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                        {{ __('') }}
+                        {{ __('回首頁') }}
                     </a>
                 </div>
 
@@ -47,7 +47,8 @@
                             {{ __('飲食習性清單') }}
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    {{-- 尚未完成，for demo暫時mark --}}
+                    {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DinerType.index') }}">
                             {{ __('餐廳類別') }}
                         </x-nav-link>
@@ -56,7 +57,7 @@
                         <x-nav-link href="{{ route('FoodType.index') }}">
                             {{ __('食物類別') }}
                         </x-nav-link>
-                    </div>
+                    </div> --}}
                 @endrole
 
 
@@ -90,11 +91,13 @@
  @endif --}}
 
                             @if (Auth::user()->hasRole('Admin') && Auth::user()->hasRole('Vendor'))
-                                adminV
+                                超級管理員
                             @elseif(Auth::user()->hasRole('Admin'))
-                                <p>Admin</p>
+                                <p>管理員</p>
                             @elseif(Auth::user()->hasRole('Vendor'))
-                                <p>Vendor</p>
+                                <p>餐飲業者</p>
+                                @elseif(Auth::user()->hasRole('User'))
+                                <p>會員</p>
                             @endif
 
 

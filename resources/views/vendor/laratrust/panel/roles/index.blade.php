@@ -1,6 +1,6 @@
 @extends('laratrust::panel.layout')
 
-@section('title', 'Roles')
+@section('title', '角色管理')
 
 @section('content')
   <div class="flex flex-col">
