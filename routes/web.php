@@ -1,15 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DislikeFoodController;
-use App\Http\Controllers\ChainDinerController;
-use App\Http\Controllers\DietGroupController;
-use App\Http\Controllers\DietBehaviorController;
-
-use App\Http\Controllers\DinerController;
-use App\Http\Controllers\DinerTypeController;
-use App\Http\Controllers\FoodTypeController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\DinerController;
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\FoodTypeController;
+
+use App\Http\Controllers\DietGroupController;
+use App\Http\Controllers\DinerTypeController;
+use App\Http\Controllers\ChainDinerController;
+use App\Http\Controllers\DislikeFoodController;
+use App\Http\Controllers\DietBehaviorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,12 +23,13 @@ use App\Http\Controllers\MealController;
 */
 
 Route::get('/', function () {
-  return view('welcome');
-});
+//   return view('welcome');
+  return view('food');
+})->name('home');
 
 Route::get('/dashboard', function () {
   return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth']);
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -111,6 +113,35 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
 Route::get('upload', function () {
   return view('upload');
 });
+
+// add Route for Google account register
+Route::controller(GoogleController::class)->group(function(){
+
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+
+});
+
+//below is for study other package, no use in this site currently
+// for gmail server
+Route::get('/feedback', function () {
+    return view('feedback');
+});
+// Route::view('/feedback','feedback');
+
+// 可印出env的設定值
+// Route::get('/env', function () {
+//     return ENV('MAIL_PORT', '555@gmail.com');
+// });
+
+Route::get('users/export/', '\App\Http\Controllers\CheckController@export');
+
+// Route::get('/user/{id}',[CheckController::class, 'show'])->name('user.show');
+// Route::get('/create',[CheckController::class, 'create'])->name('user.input');
+// Route::post('/create',[CheckController::class, 'create'])->name('user.input');
+Route::resource('forms','\App\Http\Controllers\FormController');
+// Route::get('/forms','FormController');
 
 //Route::post('uploadpic', [ImagesController::class, 'uploadimage'])->name('uploadimage');
 //uploadimage
