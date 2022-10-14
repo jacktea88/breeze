@@ -88,6 +88,8 @@ class RegisteredUserController extends Controller
     public function store(YumFormValidation $request)
     {
         // dd($request);
+        // dump($request->user['given_name']);
+
         // dd($guser);
 // if (false) {
 if (true) {
@@ -143,6 +145,7 @@ if (true) {
         // dump(session('gid'));
         // dd($request);
         // dd($guser);
+        // dump($request->user['given_name']);
 // if (false) {
 if (true) {
 
