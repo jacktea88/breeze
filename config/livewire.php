@@ -55,7 +55,8 @@ return [
     */
 
     // 'asset_url' => null,
-    'asset_url' => 'http://localhost/web111a/laravel/breeze/public',
+    'asset_url' => 'https://web111a.evtaweb.synology.me/10/yumeal/public',
+    // 'asset_url' => 'http://localhost/web111a/laravel/breeze/public',
 
     /*
     |--------------------------------------------------------------------------
