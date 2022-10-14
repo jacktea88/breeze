@@ -170,6 +170,8 @@
 
         }
     </style>
+    {{-- for livewire --}}
+    @livewireStyles
 </head>
 
 <body>
@@ -196,30 +198,30 @@
                     @if (Auth::guest())
                         {{-- 進來這裏表示尚未完成註冊 --}}
                         {{-- 為了建立關連<label> for和<input> id 的值必須相同 --}}
-                            <label for="user_religion">宗教信仰:&nbsp;&nbsp;
-                                <span style="color:red;">
-                                    @error('user_religion')
-                                        {{ $message }}
-                                    @enderror
-                                </span></label>
+                        <label for="user_religion">宗教信仰:&nbsp;&nbsp;
+                            <span style="color:red;">
+                                @error('user_religion')
+                                    {{ $message }}
+                                @enderror
+                            </span></label>
 
-                            <select id="user_religion" name="user_religion">
+                        <select id="user_religion" name="user_religion">
 
-                                <option value="">請選擇</option>
+                            <option value="">請選擇</option>
 
-                                    <option value="佛教" {{ old('user_religion') == '佛教' ? 'selected' : '' }}>佛教
-                                    </option>
-                                    <option value="天主教" {{ old('user_religion') == '天主教' ? 'selected' : '' }}>天主教
-                                    </option>
-                                    <option value="基督教" {{ old('user_religion') == '基督教' ? 'selected' : '' }}>基督教
-                                    </option>
+                            <option value="佛教" {{ old('user_religion') == '佛教' ? 'selected' : '' }}>佛教
+                            </option>
+                            <option value="天主教" {{ old('user_religion') == '天主教' ? 'selected' : '' }}>天主教
+                            </option>
+                            <option value="基督教" {{ old('user_religion') == '基督教' ? 'selected' : '' }}>基督教
+                            </option>
                         </select>
 
                         <label for="user_height">身&nbsp;高:&nbsp;<span style="color:red;">
-                            @error('user_height')
-                            {{ $message }}
-                            @enderror
-                        </span></label>
+                                @error('user_height')
+                                    {{ $message }}
+                                @enderror
+                            </span></label>
                         <input type="number" id="user_height" name="user_height" value="{{ old('user_height') }}">
                         <br>
 
@@ -234,13 +236,13 @@
 
                             <option value="">請選擇</option>
 
-                                <option value="交往中" {{ old('user_relation') == '交往中' ? 'selected' : '' }}>交往中
-                                </option>
-                                <option value="未婚" {{ old('user_relation') == '未婚' ? 'selected' : '' }}>未婚
-                                </option>
-                                <option value="已婚" {{ old('user_relation') == '已婚' ? 'selected' : '' }}>已婚
-                                </option>
-                    </select>
+                            <option value="交往中" {{ old('user_relation') == '交往中' ? 'selected' : '' }}>交往中
+                            </option>
+                            <option value="未婚" {{ old('user_relation') == '未婚' ? 'selected' : '' }}>未婚
+                            </option>
+                            <option value="已婚" {{ old('user_relation') == '已婚' ? 'selected' : '' }}>已婚
+                            </option>
+                        </select>
 
 
 
@@ -263,24 +265,25 @@
 
                             <option value="">請選擇</option>
 
-                                <option value="學士" {{ old('user_relation') == '學士' ? 'selected' : '' }}>學士
-                                </option>
-                                <option value="碩士" {{ old('user_relation') == '碩士' ? 'selected' : '' }}>碩士
-                                </option>
-                                <option value="博士" {{ old('user_relation') == '博士' ? 'selected' : '' }}>博士
-                                </option>
-                    </select>
+                            <option value="學士" {{ old('user_relation') == '學士' ? 'selected' : '' }}>學士
+                            </option>
+                            <option value="碩士" {{ old('user_relation') == '碩士' ? 'selected' : '' }}>碩士
+                            </option>
+                            <option value="博士" {{ old('user_relation') == '博士' ? 'selected' : '' }}>博士
+                            </option>
+                        </select>
 
-                    <label for="photo">大頭貼:&nbsp;&emsp;</label>
-                    <input type="file" id="photo" name="photo"><br>
+                        <label for="photo">大頭貼:&nbsp;&emsp;</label>
+                        <input type="file" id="photo" name="photo"><br>
 
-                    <label for="user_interest">興趣專長:&nbsp;
-                        <span style="color:red;">
-                            @error('user_interest')
-                                {{ $message }}
-                            @enderror
-                        </span></label>
-                    <input type="text" id="user_interest" name="user_interest" value="{{ old('user_interest') }}">
+                        <label for="user_interest">興趣專長:&nbsp;
+                            <span style="color:red;">
+                                @error('user_interest')
+                                    {{ $message }}
+                                @enderror
+                            </span></label>
+                        <input type="text" id="user_interest" name="user_interest"
+                            value="{{ old('user_interest') }}">
                         <br>
 
                         <label for="user_social">社交連結:&nbsp;
@@ -294,25 +297,27 @@
 
                             <option value="">請選擇</option>
 
-                                <option value="Line" {{ old('user_social_type') == 'Line' ? 'selected' : '' }}>Line
-                                </option>
-                                <option value="Facebook" {{ old('user_social_type') == 'Facebook' ? 'selected' : '' }}>Facebook
-                                </option>
-                                <option value="Instagram" {{ old('user_social_type') == 'Instagram' ? 'selected' : '' }}>Instagram
-                                </option>
-                    </select>
+                            <option value="Line" {{ old('user_social_type') == 'Line' ? 'selected' : '' }}>Line
+                            </option>
+                            <option value="Facebook" {{ old('user_social_type') == 'Facebook' ? 'selected' : '' }}>
+                                Facebook
+                            </option>
+                            <option value="Instagram" {{ old('user_social_type') == 'Instagram' ? 'selected' : '' }}>
+                                Instagram
+                            </option>
+                        </select>
 
-                    <input type="text" id="user_social" name="user_social_url" value="{{ old('user_social_rul') }}">
-<br>
-                    <label for="user_intro">自我介紹: <span style="color:red;">
+                        <input type="text" id="user_social" name="user_social_url"
+                            value="{{ old('user_social_rul') }}">
+                        <br>
+                        <label for="user_intro">自我介紹: <span style="color:red;">
 
-                        @error('user_intro')
-                            {{ $message }}
-                        @enderror
-                    </span></label>
-                    <br>
-                <textarea id="user_intro" name="user_intro" value="">{{ old('user_intro') }}</textarea>
-
+                                @error('user_intro')
+                                    {{ $message }}
+                                @enderror
+                            </span></label>
+                        <br>
+                        <textarea id="user_intro" name="user_intro" value="">{{ old('user_intro') }}</textarea>
                     @endif
 
                 </fieldset>
@@ -321,7 +326,7 @@
                 {{-- 配對資料欄位 --}}
                 {{-- 配對資料欄位 --}}
                 <fieldset>
-                    @if (true)
+                    @if (false)
                         <label for="pair_gender">性&nbsp;別:&emsp;
                             <span style="color:red;">
                                 {{-- @error後面要直接無空格接('sex'){{$message }}也不能斷行 會報錯 --}}
@@ -332,29 +337,26 @@
 
                         <input type="radio" id="male" value="male" name="user_sex"
                             @if (old('user_sex') == 'male') checked @endif>
-                            <label for="male"
-                            class="light">男&emsp;&emsp;</label>
+                        <label for="male" class="light">男&emsp;&emsp;</label>
                         <input type="radio" id="female" value="female" name="user_sex"
                             @if (old('user_sex') == 'female') checked @endif>
-                            <label for="female"
-                            class="light">女&emsp;&emsp;</label>
+                        <label for="female" class="light">女&emsp;&emsp;</label>
                         <input type="radio" id="notcare" value="notcare" name="user_sex"
                             @if (old('user_sex') == 'notcare') checked @endif>
-                            <label for="notcare"
-                            class="light">不拘&emsp;&emsp;&nbsp;</label>
+                        <label for="notcare" class="light">不拘&emsp;&emsp;&nbsp;</label>
                     @endif
-                    @if (true)
+                    @if (false)
 
-                    <label for="pair_relation">感情狀態:&nbsp;&nbsp;
-                        <span style="color:red;">
-                            @error('pair_relation')
-                                {{ $message }}
-                            @enderror
-                        </span></label>
+                        <label for="pair_relation">感情狀態:&nbsp;&nbsp;
+                            <span style="color:red;">
+                                @error('pair_relation')
+                                    {{ $message }}
+                                @enderror
+                            </span></label>
 
-                    <select id="pair_relation" name="pair_relation">
+                        <select id="pair_relation" name="pair_relation">
 
-                        <option value="">請選擇</option>
+                            <option value="">請選擇</option>
 
                             <option value="交往中" {{ old('pair_relation') == '交往中' ? 'selected' : '' }}>交往中
                             </option>
@@ -362,23 +364,27 @@
                             </option>
                             <option value="已婚" {{ old('pair_relation') == '已婚' ? 'selected' : '' }}>已婚
                             </option>
-                </select>
-                <br>
-                <label for="pair_age">年齡區間:&nbsp;<span style="color:red;">
-                    @error('pair_age')
-                    {{ $message }}
-                    @enderror
-                </span></label>
-                <input type="number" id="pair_age" name="pair_age_max" value="{{ old('pair_age_max') }}">到
-                <input type="number" id="pair_age" name="pair_age_mini" value="{{ old('pair_age_mini') }}">歲
+                        </select>
+                        <br>
+                        <label for="pair_age">年齡區間:&nbsp;<span style="color:red;">
+                                @error('pair_age')
+                                    {{ $message }}
+                                @enderror
+                            </span></label>
+                        <input type="number" id="pair_age" name="pair_age_max"
+                            value="{{ old('pair_age_max') }}">到
+                        <input type="number" id="pair_age" name="pair_age_mini"
+                            value="{{ old('pair_age_mini') }}">歲
 
-                <label for="pair_height">身&emsp;&emsp;高:&nbsp;<span style="color:red;">
-                    @error('pair_height')
-                    {{ $message }}
-                    @enderror
-                </span></label>
-                <input type="number" id="pair_height" name="pair_height_max" value="{{ old('pair_height_max') }}">到
-                <input type="number" id="pair_height" name="pair_height_mini" value="{{ old('pair_height_mini') }}">公分
+                        <label for="pair_height">身&emsp;&emsp;高:&nbsp;<span style="color:red;">
+                                @error('pair_height')
+                                    {{ $message }}
+                                @enderror
+                            </span></label>
+                        <input type="number" id="pair_height" name="pair_height_max"
+                            value="{{ old('pair_height_max') }}">到
+                        <input type="number" id="pair_height" name="pair_height_mini"
+                            value="{{ old('pair_height_mini') }}">公分
 
 
                 </fieldset>
@@ -394,28 +400,28 @@
 
                     <option value="">請選擇</option>
 
-                        <option value="5公里" {{ old('pair_distance') == '交往中' ? 'selected' : '' }}>5公里
-                        </option>
-                        <option value="10公里" {{ old('pair_distance') == '未婚' ? 'selected' : '' }}>10公里
-                        </option>
-                        <option value="20公里" {{ old('pair_distance') == '已婚' ? 'selected' : '' }}>20公里
-                        </option>
-                        <option value="50公里" {{ old('pair_distance') == '已婚' ? 'selected' : '' }}>50公里
-                        </option>
-                        <option value="100公里" {{ old('pair_distance') == '已婚' ? 'selected' : '' }}>100公里
-                        </option>
-            </select>
+                    <option value="5公里" {{ old('pair_distance') == '交往中' ? 'selected' : '' }}>5公里
+                    </option>
+                    <option value="10公里" {{ old('pair_distance') == '未婚' ? 'selected' : '' }}>10公里
+                    </option>
+                    <option value="20公里" {{ old('pair_distance') == '已婚' ? 'selected' : '' }}>20公里
+                    </option>
+                    <option value="50公里" {{ old('pair_distance') == '已婚' ? 'selected' : '' }}>50公里
+                    </option>
+                    <option value="100公里" {{ old('pair_distance') == '已婚' ? 'selected' : '' }}>100公里
+                    </option>
+                </select>
 
-            <label for="user_religion">宗教信仰:&nbsp;&nbsp;
-                <span style="color:red;">
-                    @error('user_religion')
-                        {{ $message }}
-                    @enderror
-                </span></label>
+                <label for="user_religion">宗教信仰:&nbsp;&nbsp;
+                    <span style="color:red;">
+                        @error('user_religion')
+                            {{ $message }}
+                        @enderror
+                    </span></label>
 
-            <select id="user_religion" name="user_religion">
+                <select id="user_religion" name="user_religion">
 
-                <option value="">請選擇</option>
+                    <option value="">請選擇</option>
 
                     <option value="佛教" {{ old('user_religion') == '佛教' ? 'selected' : '' }}>佛教
                     </option>
@@ -423,7 +429,7 @@
                     </option>
                     <option value="基督教" {{ old('user_religion') == '基督教' ? 'selected' : '' }}>基督教
                     </option>
-        </select>
+                </select>
 
                 <br><br><label>其他飲食習慣:<span style="color:red;">
                         @error('dietBehavior')
@@ -439,19 +445,23 @@
                 @endforeach
 
                 @endif
-                {{-- 發送按鈕區域 --}}
-                {{-- 發送按鈕區域 --}}
+
                 <br><br>
-                <input id="user_agree" type="checkbox" value="agree" name="user_agree" class="form-checkbox h-4 w-4">
+                {{-- 移到下面livewire來控制 --}}
+                {{-- <input id="user_agree" type="checkbox" value="agree" name="user_agree" class="form-checkbox h-4 w-4">
                 <span>我同意yumeal網站的隱私權及網站使用條款</span>
-                <button type="submit" name="action" value="register">完成註冊</button>
+                <button type="submit" name="action" value="register">完成註冊</button> --}}
 
                 <br>
-
             </form>
+            {{-- 發送按鈕區域 --}}
+            {{-- 發送按鈕區域 --}}
+            @livewire('checker')
+
         </div>
     </div>
-
+    {{-- for livewire --}}
+    @livewireScripts
 </body>
 
 </html>
