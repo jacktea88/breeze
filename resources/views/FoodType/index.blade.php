@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('飲食族群設定') }}
+            {{ __('食物類型設定') }}
         </h2>
     </x-slot>
 
@@ -19,12 +19,12 @@
 
                     <div style="width:85%;margin: auto;"
                         class="d-flex justify-content-between align-items-end mb-2 mt-5">
-                        <a href="{{ route('DietGroup.create') }}" class="btn "
+                        <a href="{{ route('FoodType.create') }}" class="btn "
                             style="border-radius: 0;background-color: #999;color:#fff">
                             <span class="d-flex align-items-center mx-0"><i class="material-icons">&#xE147;</i><span
-                                    class="ml-1">新增飲食族群</span></span>
+                                    class="ml-1">新增食物類型</span></span>
                         </a>
-                        <form action="{{ route('DietGroup_search') }}" method="GET" class="">
+                        <form action="{{ route('FoodType_search') }}" method="GET" class="">
                             <div class="input-group ">
                                 <input type="text" class="form-control" placeholder="Search"
                                     aria-label="Search" aria-describedby="searchBtn" id="searchBtn" name="search" />
@@ -41,36 +41,32 @@
                             <tr>
                                 <th><label>編號</label></th>
                                 <th><label>名稱</label></th>
-                                <th><label>類型</label></th>
+                                <th><label>排序</label></th>
                                 <th><label>操作</label></th>
 
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                @foreach ($DietGroups as $DietGroup)
-                                    <td data-label="編號"> {{ $DietGroup->dg_no }}</td>
-                                    <td data-label="名稱"> {{ $DietGroup->dg_name }}</td>
-                                    @if (trim($DietGroup->dg_type) != null)
-                                        <td data-label="排序"> {{ $DietGroup->dg_type }}</td>
-                                    @else
-                                        <td data-label="排序"> &nbsp; </td>
-                                    @endif
+                                @foreach ($FoodTypes as $FoodType)
+                                    <td data-label="編號"> {{ $FoodType->ft_no }}</td>
+                                    <td data-label="名稱"> {{ $FoodType->ft_typename }}</td>
+                                    <td data-label="名稱"> {{ $FoodType->ft_sort }}</td>
                                     <td data-label="操作">
-                                        <a href="{{ route('DietGroup.show', $DietGroup->id) }}" class="show mx-1">
+                                        <a href="{{ route('FoodType.show', $FoodType->id) }}" class="show mx-1">
                                             <i class="fa-sharp fa-solid fa-eye " style="color:#36304A;"
                                                 data-toggle="tooltip" title="檢視"></i></a>
 
 
-                                        <a href="{{ route('DietGroup.edit', $DietGroup->id) }}" class="edit mx-1">
+                                        <a href="{{ route('FoodType.edit', $FoodType->id) }}" class="edit mx-1">
                                             <i class="fa-solid fa-pen-to-square" style="color:#36304A;"
                                                 data-toggle="tooltip" title="編輯"></i></a>
 
-                                        <form id="del_icon" action="{{ route('DietGroup.destroy', $DietGroup->id) }}"
+                                        <form id="del_icon" action="{{ route('FoodType.destroy', $FoodType->id) }}"
                                             method="post" style="display: inline-block;">
                                             @csrf @method('DELETE')
 
-                                            <a href="{{ 'DietGroup/delete/' }}{{ $DietGroup->id }}" class=" mx-1"
+                                            <a href="{{ 'FoodType/delete/' }}{{ $FoodType->id }}" class=" mx-1"
                                                 onclick="return confirm('確定要刪除此筆資料嗎?')">
                                                 <i class="fa-solid fa-trash" style="color:#36304A;"
                                                     data-toggle="tooltip" title="刪除"></i></a>
@@ -85,7 +81,7 @@
 
                     <div style="width:85%;margin:auto;  class=" mt-1" class="d-flex">
                         <div class="card-body d-flex justify-content-end mr-0">
-                            {{ $DietGroups->appends(['search' => request()->search])->links('vendor.pagination.bootstrap-5') }}
+                            {{ $FoodTypes->appends(['search' => request()->search])->links('vendor.pagination.bootstrap-5') }}
                         </div>
                     </div>
 

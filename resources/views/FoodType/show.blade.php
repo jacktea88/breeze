@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{-- 很單純的頁面標題 --}}
-            {{ __('飲食族群小檔案') }}
+            {{ __('不討喜食物類型') }}
         </h2>
     </x-slot>
 
@@ -14,19 +14,19 @@
 
                     <div class="card mt-4">
                         <div class="card-header">
-                            飲食族群小檔案
+                            不討喜食物類型
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">名稱：{{ $DietGroup->dg_name }}</li>
-                                <li class="list-group-item">編號：{{ $DietGroup->dg_no }}</li>
-                                <li class="list-group-item">類型：{{ $DietGroup->dg_type }}</li>
-                                <li class="list-group-item">備註：{{ $DietGroup->dg_remark }}</li>
+                                <li class="list-group-item">名稱：{{ $FoodType->ft_typename }}</li>
+                                <li class="list-group-item">編號：{{ $FoodType->ft_no }}</li>
+                                <li class="list-group-item">類型：{{ $FoodType->ft_type }}</li>
+                                <li class="list-group-item">備註：{{ $FoodType->ft_remark }}</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="my-2 ml-2"><a href="{{ url('/DietGroup') }}" style="text-align: left;">Back to HOME</a></div>
+                    <div class="my-2 ml-2"><a href="{{ url('/FoodType') }}" style="text-align: left;">Back to HOME</a></div>
 
 
 

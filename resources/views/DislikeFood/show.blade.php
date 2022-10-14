@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{-- 很單純的頁面標題 --}}
-            {{ __('個人檔案') }}
+            {{ __('不討喜食物小檔案') }}
         </h2>
     </x-slot>
 

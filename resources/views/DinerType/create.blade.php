@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>新增知名連鎖餐飲</title>
+  <title>新增餐館類型</title>
   <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
   <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
   <style>
@@ -135,38 +135,40 @@
 
 
 
-      <form action="{{ url('/ChainDiner') }}" method="post">
-        <h1>新增知名連鎖餐飲</h1>
+      <form action="{{ url('/DinerType') }}" method="post">
+        <h1>新增餐館類型</h1>
         @csrf
         <fieldset>
 
           <legend><span class="number">1</span></legend>
 
-          <label for="cd_name">名稱:<span style="color:red;">
-              @error('cd_name')
+          <label for="dt_typename">名稱:<span style="color:red;">
+              @error('dt_typename')
               {{ $message }}
               @enderror
             </span></label>
-          <input type="text" name="cd_name" value="{{ old('cd_name') }}">
+          <input type="text" name="dt_typename" value="{{ old('dt_typename') }}">
 
-          <label for="cd_no">編號:<span style="color:red;">
-              @error('cd_no')
+          <label for="dt_no">編號:<span style="color:red;">
+              @error('dt_no')
               {{ $message }}
               @enderror
             </span></label>
-          <input type="text" name="cd_no" value="{{ old('cd_no') }}">
+          <input type="text" name="dt_no" value="{{ old('dt_no') }}">
 
-          <label for="cd_type">類型:
+          <label for="dt_sort">排序:
             <span style="color:red;">
-              @error('cd_type')
+              @error('dt_sort')
               {{ $message }}
               @enderror
             </span></label>
-          <input type="text" name="cd_type" value="{{ old('cd_type') }}">
-          <label for="cd_remark">備註: <span style="color:red;">
+          <input type="text" name="dt_sort" value="{{ old('dt_sort') }}">
+
+
+          <label for="dt_remark">備註: <span style="color:red;">
 
             </span></label>
-          <textarea name="cd_remark" value="">{{ old('cd_remark') }}</textarea>
+          <textarea name="dt_remark" value="">{{ old('dt_remark') }}</textarea>
 
 
           <fieldset>
