@@ -80,8 +80,8 @@
             text-align: center;
             font-style: normal;
             border-radius: 5px;
-            /* width: 300px; */
-            width: 32%;
+            width: 300px;
+            /* width: 32%; */
 
             border: 1px solid #999;
             border-width: 1px 1px 3px;
@@ -163,23 +163,25 @@
         @media screen and (min-width: 480px) {
 
             form {
-                /* max-width: 480px; */
-                max-width: 780px;
+                max-width: 340px;
+                /* max-width: 780px; */
 
             }
 
         }
     </style>
+    {{-- for livewire --}}
+    @livewireStyles
 </head>
 
 <body>
     <div class="row">
         <div class="col-md-12">
-            @if (count($errors) > 0)
+            {{-- @if (count($errors) > 0)
                 @foreach ($errors->all() as $error)
                     <p class="alert alert-danger">{{ $error }}</p>
                 @endforeach
-            @endif
+            @endif --}}
 
 
 
@@ -198,14 +200,16 @@
                     @if (Auth::guest())
                         {{-- 進來這裏表示尚未註冊，所以須填帳號密碼 --}}
                         {{-- 為了建立關連<label> for和<input> id 的值必須相同 --}}
-                        <label for="name">名&nbsp;稱:&nbsp;<span style="color:red;">
+                        <label for="name">名&nbsp;稱:&nbsp;
+                            <span style="color:red;">
                                 @error('user_name')
                                     {{ $message }}
                                 @enderror
                             </span></label>
+                            <br>
                         <input type="text" id="name" name="user_name" value="{{ old('user_name') }}">
                         {{-- <input type="text" id="name" name="user_name" value="{{ $name }}"> --}}
-
+<br>
                         <label for="email">信&nbsp;箱:&nbsp;&emsp;&emsp;
                             <span style="color:red;">
                                 @error('user_email')
@@ -222,7 +226,7 @@
                                 @enderror
                             </span></label>
                         <input type="password" id="password" name="user_password" value="{{ old('user_password') }}">
-                        <br>
+                        {{-- <br> --}}
                     @endif
 
                 </fieldset>
@@ -232,7 +236,7 @@
 
 
                 <fieldset>
-                    @if (true)
+                    @if (false)
                         <label for="male">性&nbsp;別:&emsp;&emsp;&emsp;&emsp;
                             <span style="color:red;">
                                 {{-- @error後面要直接無空格接('sex'){{$message }}也不能斷行 會報錯 --}}
@@ -248,49 +252,20 @@
                             @if (old('user_sex') == 'female') checked @endif><label for="female"
                             class="light">女&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
                     @endif
-                    @if (true)
+                    <br>
 
-                        <label for="user_position">&nbsp;鄰近地標:&nbsp;&nbsp;
+
+                        <label for="user_position">鄰近地標:&nbsp;&nbsp;
                             <span style="color:red;">
                                 @error('user_position')
                                     {{ $message }}
                                 @enderror
                             </span></label>
 
-                        <select id="user_position" name="user_position">
+{{-- use livewire to render city and landmark --}}
+                            @livewire('select')
 
-                            <option value="">請選擇</option>
-
-                            <optgroup label="北市">
-                                <option value="TP01" {{ old('user_position') == 'TP01' ? 'selected' : '' }}>台北火車站
-                                </option>
-                                <option value="TP02" {{ old('user_position') == 'TP02' ? 'selected' : '' }}>中正紀念堂
-                                </option>
-                                <option value="TP03" {{ old('user_position') == 'TP03' ? 'selected' : '' }}>台北101
-                                </option>
-                                <option value="TP04" {{ old('user_position') == 'TP04' ? 'selected' : '' }}>台北市立動物園
-                                </option>
-                                <option value="TP05" {{ old('user_position') == 'TP05' ? 'selected' : '' }}>市立美術館
-                                </option>
-                                <option value="TP06" {{ old('user_position') == 'TP06' ? 'selected' : '' }}>故宮博物院
-                                </option>
-                            </optgroup>
-
-                            <optgroup label="桃園">
-                                <option value="TY01"{{ old('user_position') == 'TY01' ? 'selected' : '' }}>埔心農場
-                                </option>
-                                <option value="TY02" {{ old('user_position') == 'TY02' ? 'selected' : '' }}>楊梅車站
-                                </option>
-                                <option value="TY03" {{ old('user_position') == 'TY03' ? 'selected' : '' }}>
-                                    大江購物中心</option>
-                            </optgroup>
-                            <optgroup label="台南">
-                                <option value="TN01" {{ old('user_position') == 'TN01' ? 'selected' : '' }}>赤崁樓
-                                </option>
-                                <option value="TN02" {{ old('user_position') == 'TN02' ? 'selected' : '' }}>安平古堡
-                                </option>
-                            </optgroup>
-                        </select>
+                            @if (false)
 
                         <label for="birthday">生&nbsp;日:&nbsp;
                             <span style="color:red;">
@@ -307,10 +282,7 @@
                 {{-- 飲食喜好欄位 --}}
                 {{-- 飲食喜好欄位 --}}
 
-                @php
-                    // use App\Models\DislikeFood;
-                    // $dislikes = App\Models\DislikeFood::all();
-                @endphp
+
                 <label>我不愛吃:<span style="color:red;">
                         @error('dislike')
                             {{ $message }}
@@ -416,15 +388,17 @@
                 {{-- 發送按鈕區域 --}}
                 {{-- 發送按鈕區域 --}}
                 <br><br>
+
                 <span>想不想認識與自己口味接近的新朋友?</span><br>
                 <button type="submit" name="action" value="register-pair">好，填寫配對資料</button>
-                <button type="submit" name="action" value="register">先不用，完成註冊</button>
+                {{-- <button type="submit" name="action" value="register">先不用，完成註冊</button> --}}
                 <button type="submit" name="action" value="register-vendor">繼續填寫餐廳資料</button>
 
                 <br>
+                @livewire('checker1')
 
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('已經註冊?') }}
                 </a>
 
                 {{-- Add for google login button --}}
@@ -440,6 +414,7 @@
             </form>
         </div>
     </div>
+    @livewireScripts
 
 </body>
 

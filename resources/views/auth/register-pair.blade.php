@@ -80,8 +80,8 @@
             text-align: center;
             font-style: normal;
             border-radius: 5px;
-            /* width: 300px; */
-            width: 32%;
+            width: 300px;
+            /* width: 32%; */
 
             border: 1px solid #999;
             border-width: 1px 1px 3px;
@@ -457,6 +457,7 @@
             {{-- 發送按鈕區域 --}}
             {{-- 發送按鈕區域 --}}
             @livewire('checker')
+
 
         </div>
     </div>

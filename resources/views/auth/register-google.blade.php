@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Form</title>
+    <title>Google Sign Up Form</title>
     {{-- <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0"> --}}
     <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
     <style>
@@ -159,13 +159,15 @@
         @media screen and (min-width: 480px) {
 
             form {
-                /* max-width: 480px; */
-                max-width: 780px;
+                max-width: 340px;
+                /* max-width: 780px; */
 
             }
 
         }
     </style>
+    {{-- for livewire --}}
+    @livewireStyles
 </head>
 
 <body>
@@ -194,7 +196,8 @@
                     @if (Auth::guest())
                         {{-- 進來這裏表示尚未註冊，所以須填帳號密碼 --}}
                         {{-- 為了建立關連<label> for和<input> id 的值必須相同 --}}
-                        <label for="name">名&nbsp;稱:&nbsp;<span style="color:red;">
+                        <label for="name">名&nbsp;稱:&nbsp;
+                            <span style="color:red;">
                                 @error('user_name')
                                     {{ $message }}
                                 @enderror
@@ -244,49 +247,20 @@
                             @if (old('user_sex') == 'female') checked @endif><label for="female"
                             class="light">女&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
                     @endif
-                    @if (false)
+                    <br>
 
-                        <label for="user_position">&nbsp;鄰近地標:&nbsp;&nbsp;
+
+                        <label for="user_position">鄰近地標:&nbsp;&nbsp;
                             <span style="color:red;">
                                 @error('user_position')
                                     {{ $message }}
                                 @enderror
                             </span></label>
 
-                        <select id="user_position" name="user_position">
+{{-- use livewire to render city and landmark --}}
+                            @livewire('select')
 
-                            <option value="">請選擇</option>
-
-                            <optgroup label="北市">
-                                <option value="TP01" {{ old('user_position') == 'TP01' ? 'selected' : '' }}>台北火車站
-                                </option>
-                                <option value="TP02" {{ old('user_position') == 'TP02' ? 'selected' : '' }}>中正紀念堂
-                                </option>
-                                <option value="TP03" {{ old('user_position') == 'TP03' ? 'selected' : '' }}>台北101
-                                </option>
-                                <option value="TP04" {{ old('user_position') == 'TP04' ? 'selected' : '' }}>台北市立動物園
-                                </option>
-                                <option value="TP05" {{ old('user_position') == 'TP05' ? 'selected' : '' }}>市立美術館
-                                </option>
-                                <option value="TP06" {{ old('user_position') == 'TP06' ? 'selected' : '' }}>故宮博物院
-                                </option>
-                            </optgroup>
-
-                            <optgroup label="桃園">
-                                <option value="TY01"{{ old('user_position') == 'TY01' ? 'selected' : '' }}>埔心農場
-                                </option>
-                                <option value="TY02" {{ old('user_position') == 'TY02' ? 'selected' : '' }}>楊梅車站
-                                </option>
-                                <option value="TY03" {{ old('user_position') == 'TY03' ? 'selected' : '' }}>
-                                    大江購物中心</option>
-                            </optgroup>
-                            <optgroup label="台南">
-                                <option value="TN01" {{ old('user_position') == 'TN01' ? 'selected' : '' }}>赤崁樓
-                                </option>
-                                <option value="TN02" {{ old('user_position') == 'TN02' ? 'selected' : '' }}>安平古堡
-                                </option>
-                            </optgroup>
-                        </select>
+                            @if (false)
 
                         <label for="birthday">生&nbsp;日:&nbsp;
                             <span style="color:red;">
@@ -303,10 +277,7 @@
                 {{-- 飲食喜好欄位 --}}
                 {{-- 飲食喜好欄位 --}}
 
-                @php
-                    // use App\Models\DislikeFood;
-                    // $dislikes = App\Models\DislikeFood::all();
-                @endphp
+
                 <label>我不愛吃:<span style="color:red;">
                         @error('dislike')
                             {{ $message }}
@@ -374,19 +345,55 @@
                     <label class="light" for="dietBehavior">{{ $dietBehavior->db_name }}</label>
                 @endforeach
 
+                <br><br><br>
+
+                <label for="often_diner">店&nbsp;名:&nbsp;<span style="color:red;">
+                        @error('often_diner')
+                            {{ $message }}
+                        @enderror
+                    </span></label>
+
+                <label for="often_meal">餐&nbsp;點&nbsp;名:&nbsp;<span style="color:red;">
+                        @error('often_meal')
+                            {{ $message }}
+                        @enderror
+                    </span></label>
+
+                <label for="often_address">約略地址:&nbsp;<span style="color:red;">
+                        @error('often_meal')
+                            {{ $message }}
+                        @enderror
+                    </span></label>
+                <br>
+                <input type="text" id="often_diner" name="often_diner1" value="{{ old('often_diner1') }}" style="width: 25%">
+                <input type="text" id="often_meal" name="often_meal1" value="{{ old('often_meal1') }}" style="width: 30%">
+                <input type="text" id="often_address" name="often_address1" value="{{ old('often_address1') }}" style="width: 40%">
+                <br>
+                <input type="text" id="often_diner" name="often_diner2" value="{{ old('often_diner2') }}" style="width: 25%">
+                <input type="text" id="often_meal" name="often_meal2" value="{{ old('often_meal2') }}" style="width: 30%">
+                <input type="text" id="often_address" name="often_address2" value="{{ old('often_address2') }}" style="width: 40%">
+                <br>
+                <input type="text" id="often_diner" name="often_diner3" value="{{ old('often_diner3') }}" style="width: 25%">
+                <input type="text" id="often_meal" name="often_meal3" value="{{ old('often_meal3') }}" style="width: 30%">
+                <input type="text" id="often_address" name="often_address3" value="{{ old('often_address3') }}" style="width: 40%">
+
+
+
                 @endif
                 {{-- 發送按鈕區域 --}}
                 {{-- 發送按鈕區域 --}}
                 <br><br>
+
                 <span>想不想認識與自己口味接近的新朋友?</span><br>
                 <button type="submit" name="action" value="register-pair">好，填寫配對資料</button>
-                <button type="submit" name="action" value="register">先不用，完成註冊</button>
+                {{-- <button type="submit" name="action" value="register">先不用，完成註冊</button> --}}
                 <button type="submit" name="action" value="register-vendor">繼續填寫餐廳資料</button>
 
                 <br>
+                @livewire('checker1')
 
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('已經註冊?') }}
                 </a>
 
                 {{-- Add for google login button --}}
@@ -402,6 +409,7 @@
             </form>
         </div>
     </div>
+    @livewireScripts
 
 </body>
 
