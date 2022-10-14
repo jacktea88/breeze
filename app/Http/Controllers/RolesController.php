@@ -92,9 +92,9 @@ class RolesController
     public function update(Request $request, $id)
     {
         $role = $this->rolesModel::findOrFail($id);
-        dump($request);
-        dump($role);
-        
+        // dump($request);
+        // dump($role);
+
 
         if (!Helper::roleIsEditable($role)) {
             Session::flash('laratrust-error', 'The role is not editable');
@@ -108,7 +108,7 @@ class RolesController
 
         $role->update($data);
         $role->syncPermissions($request->get('permissions') ?? []);
-        dump($role);
+        // dump($role);
         // dd($request->get('permissions'));
         Session::flash('laratrust-success', 'Role updated successfully');
         return redirect(route('laratrust.roles.index'));
