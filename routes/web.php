@@ -127,7 +127,7 @@ Route::controller(GoogleController::class)->group(function(){
 // for gmail server
 Route::get('/feedback', function () {
     return view('feedback');
-});
+})->name('feedback');
 // Route::view('/feedback','feedback');
 
 // 可印出env的設定值

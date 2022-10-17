@@ -344,7 +344,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               +01(24) 8543 8088
             </li>
             <li class="mt-2">
-              <a href="mailto:info@example.com">info@example.com</a>
+              <a href="{{route('feedback')}}">service@yumeal.com</a>
+
             </li>
           </ul>
         </div>
