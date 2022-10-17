@@ -2,8 +2,8 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+                {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
+            </a>Yumeal Login
         </x-slot>
 
         <!-- Session Status -->
@@ -14,7 +14,14 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
+<div>
+    <x-label for="user_demo" :value="__('Demo user')" />
+    email:user.demo@demo.com password:12345678
+    <x-label for="vendor_demo" :value="__('Demo vendor')" />
+    email:vendor.demo@demo.com password:12345678
 
+</div>
+<br>
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />
