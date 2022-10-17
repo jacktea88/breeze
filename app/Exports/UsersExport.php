@@ -9,16 +9,17 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 //使用內建的格式產出excel，但是格式很陽春，沒有欄位名稱
-class UsersExport implements FromCollection
-{
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
-    {
-        return User::all();
-    }
-}
+//將原套件的方法mark掉，採用下面自行定義的excel視圖
+// class UsersExport implements FromCollection
+// {
+//     /**
+//     * @return \Illuminate\Support\Collection
+//     */
+//     public function collection()
+//     {
+//         return User::all();
+//     }
+// }
 
 //可自行規劃格式，以view blade方式來顯示，用此法時要將上面的內建方式註解掉，否則會有衝突
 class UsersExport implements FromView

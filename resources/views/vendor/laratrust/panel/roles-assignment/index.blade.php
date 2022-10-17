@@ -19,6 +19,14 @@
             {{-- @endforeach --}}
           {{-- </select> --}}
         </label>
+{{-- 新增user data 匯出按鈕 --}}
+        <a
+            href="{{route('users_export')}}"
+            class="self-end bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        >
+            會員資料匯出
+        </a>
+
         <div class="flex mt-4 align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg ">
           <table class="min-w-full">
             <thead>

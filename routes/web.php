@@ -38,6 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
   })->name('dashboard');
 
   Route::view('profile',  'profile')->name('profile');
+
+  Route::get('users/export/', '\App\Http\Controllers\CheckController@export')->middleware(['role:Admin'])->name('users_export');
+
 });
 
 
@@ -135,7 +138,8 @@ Route::get('/feedback', function () {
 //     return ENV('MAIL_PORT', '555@gmail.com');
 // });
 
-Route::get('users/export/', '\App\Http\Controllers\CheckController@export');
+//移到上面用auth保護
+// Route::get('users/export/', '\App\Http\Controllers\CheckController@export');
 
 // Route::get('/user/{id}',[CheckController::class, 'show'])->name('user.show');
 // Route::get('/create',[CheckController::class, 'create'])->name('user.input');
