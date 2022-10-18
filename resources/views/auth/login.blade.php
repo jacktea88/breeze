@@ -16,9 +16,11 @@
             @csrf
 <div>
     <x-label for="user_demo" :value="__('Demo user')" />
-    email:user.demo@demo.com password:12345678
+    email:   user.demo@demo.com password:12345678
     <x-label for="vendor_demo" :value="__('Demo vendor')" />
-    email:vendor.demo@demo.com password:12345678
+    email: vendor.demo@demo.com password:12345678
+    <x-label for="vendor_demo" :value="__('Demo admin')" />
+    email:  admin.demo@demo.com password:12345678
 
 </div>
 <br>

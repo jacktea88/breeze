@@ -185,7 +185,7 @@
 
 
 
-            <form action="{{ route('register') }}" method="post">
+            <form action="{{ route('register.store.pair') }}" method="post">
                 <h1> 更多基本資料(選填) </h1>
                 @csrf
 
@@ -195,7 +195,8 @@
                 <fieldset>
 
                     <legend><span class="number">2</span> 填寫配對資料</legend>
-                    @if (Auth::guest())
+                    {{-- @if (Auth::guest()) --}}
+                    @if (true)
                         {{-- 進來這裏表示尚未完成註冊 --}}
                         {{-- 為了建立關連<label> for和<input> id 的值必須相同 --}}
                         <label for="user_religion">宗教信仰:&nbsp;&nbsp;
@@ -325,8 +326,9 @@
 
                 {{-- 配對資料欄位 --}}
                 {{-- 配對資料欄位 --}}
+                <legend><span class="number">3</span> 填寫配對設定</legend>
                 <fieldset>
-                    @if (false)
+                    @if (true)
                         <label for="pair_gender">性&nbsp;別:&emsp;
                             <span style="color:red;">
                                 {{-- @error後面要直接無空格接('sex'){{$message }}也不能斷行 會報錯 --}}
@@ -345,7 +347,7 @@
                             @if (old('user_sex') == 'notcare') checked @endif>
                         <label for="notcare" class="light">不拘&emsp;&emsp;&nbsp;</label>
                     @endif
-                    @if (false)
+                    @if (true)
 
                         <label for="pair_relation">感情狀態:&nbsp;&nbsp;
                             <span style="color:red;">
@@ -448,15 +450,15 @@
 
                 <br><br>
                 {{-- 移到下面livewire來控制 --}}
-                {{-- <input id="user_agree" type="checkbox" value="agree" name="user_agree" class="form-checkbox h-4 w-4">
+                <input id="user_agree" type="checkbox" value="agree" name="user_agree" class="form-checkbox h-4 w-4">
                 <span>我同意yumeal網站的隱私權及網站使用條款</span>
-                <button type="submit" name="action" value="register">完成註冊</button> --}}
+                <button type="submit" name="action" value="register">完成註冊</button>
 
                 <br>
             </form>
             {{-- 發送按鈕區域 --}}
             {{-- 發送按鈕區域 --}}
-            @livewire('checker')
+            {{-- @livewire('checker') --}}
 
 
         </div>

@@ -1,6 +1,4 @@
 <div>
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
     <input id="user_agree" type="checkbox" value="agree" name="user_agree" class="form-checkbox h-4 w-4"
         wire:model="isChecked">
     <span>我同意yumeal網站的隱私權及網站使用條款</span>
