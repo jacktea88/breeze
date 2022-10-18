@@ -208,7 +208,7 @@ if (true) {
         // ]);
         $user = Auth::user(); // Retrieve the currently authenticated user...
         // dump($user);
-        dd($user);
+        // dd($user);
 
         // $user = User::create([
         //     'name' => $request->name,
