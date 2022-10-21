@@ -1,6 +1,9 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {{-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> --}}
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
+    {{-- 選單太多，寬度不夠，故拿掉最大寬度設定max-w-7xl --}}
+
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -47,7 +50,6 @@
                             {{ __('飲食習性清單') }}
                         </x-nav-link>
                     </div>
-                    {{-- 尚未完成，for demo暫時mark --}}
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DinerType.index') }}">
                             {{ __('餐廳類別') }}
@@ -72,6 +74,19 @@
                             {{ __('餐點管理') }}
                         </x-nav-link>
                     </div>
+                @endrole
+
+                @role('User')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('OftenDiner.index') }}">
+                            {{ __('常光顧餐館') }}
+                        </x-nav-link>
+                    </div>
+                    {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('Meal.index') }}">
+                            {{ __('餐點管理') }}
+                        </x-nav-link>
+                    </div> --}}
                 @endrole
 
 
@@ -132,6 +147,9 @@ vendor
                             <x-dropdown-link :href="route('profile')">
                                 {{ __('個人檔案') }}
                             </x-dropdown-link>
+                            {{-- <x-dropdown-link :href="route('OftenDiner.index')">
+                                {{ __('常去餐館') }}
+                            </x-dropdown-link> --}}
 
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
@@ -203,6 +221,15 @@ vendor
                     <x-responsive-nav-link href="{{ route('Meal.index') }}">
                         {{ __('餐點管理') }}
                     </x-responsive-nav-link>
+                @endrole
+                <hr style=" background-color: rgba(c, c, c, 0.2); height: 0px; border: 1;border-style: solid ;">
+                @role('User')
+                    <x-responsive-nav-link href="{{ route('OftenDiner.index') }}">
+                        {{ __('常光顧餐館') }}
+                    </x-responsive-nav-link>
+                    {{-- <x-responsive-nav-link href="{{ route('Meal.index') }}">
+                        {{ __('餐點管理') }}
+                    </x-responsive-nav-link> --}}
                 @endrole
         </div>
 

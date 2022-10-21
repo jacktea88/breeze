@@ -9,6 +9,7 @@ use App\Http\Controllers\FoodTypeController;
 use App\Http\Controllers\DietGroupController;
 use App\Http\Controllers\DinerTypeController;
 use App\Http\Controllers\ChainDinerController;
+use App\Http\Controllers\OftenDinerController;
 use App\Http\Controllers\DislikeFoodController;
 use App\Http\Controllers\DietBehaviorController;
 /*
@@ -22,14 +23,19 @@ use App\Http\Controllers\DietBehaviorController;
 |
 */
 
+// 首頁設定
+// 首頁設定
 Route::get('/', function () {
 //   return view('welcome');
   return view('food');
 })->name('home');
 
+// 後台設定
+// 後台設定
 Route::get('/dashboard', function () {
   return view('dashboard');
 })->middleware(['auth']);
+
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -44,11 +50,10 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-
+// 權限管理套件Laratrust
+// 權限管理套件Laratrust
 // todo: how to know what route was protect by auth ? any cmd like route:list ?
 Route::group(['prefix' => 'laratrust', 'namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
-
-
   //below works, but can move to outside to Route:group(['middleware' => 'auth'])
   // Route::resource('/', 'RolesAssignmentController', ['as' => 'laratrust'])->middleware('auth');
 
@@ -109,15 +114,29 @@ Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], f
   // Route::get('Meal/delete/{id}', [MealController::class, 'destroy']);
   // Route::resource('Meal', MealController::class)->middleware(['role:Vendor']);
 
+
   Route::get('/din_search', 'App\Http\Controllers\DinerController@search')->name('Diner_search');
   Route::get('/meal_search', 'App\Http\Controllers\MealController@search')->name('Meal_search');
 });
+
+// User相關CRUD
+// User相關CRUD
+Route::group(['namespace' => '\App\Http\Controllers', 'middleware' => 'auth'], function () {
+    Route::get('OftenDiner/delete/{id}', [OftenDinerController::class, 'destroy']);
+    // Route::resource('OftenDiner', OftenDinerController::class)->middleware(['role:User']);
+    Route::get('/od_search', 'App\Http\Controllers\OftenDinerController@search')->name('OftenDiner_search');
+    Route::resource('OftenDiner', OftenDinerController::class);
+
+
+});
+
 
 Route::get('upload', function () {
   return view('upload');
 });
 
-// add Route for Google account register
+// Google 帳號登入
+// Google 帳號登入
 Route::controller(GoogleController::class)->group(function(){
 
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
