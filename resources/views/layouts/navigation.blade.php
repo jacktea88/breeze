@@ -48,7 +48,7 @@
                         </x-nav-link>
                     </div>
                     {{-- 尚未完成，for demo暫時mark --}}
-                    {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('DinerType.index') }}">
                             {{ __('餐廳類別') }}
                         </x-nav-link>
@@ -57,7 +57,7 @@
                         <x-nav-link href="{{ route('FoodType.index') }}">
                             {{ __('食物類別') }}
                         </x-nav-link>
-                    </div> --}}
+                    </div>
                 @endrole
 
 
